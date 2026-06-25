@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>九游 · 简明指南与访问提醒</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f8f5f0;
+            font-family: 'Segoe UI', 'PingFang SC', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.7;
+            color: #2c2b28;
+            padding: 2rem 1.2rem;
+        }
+
+        .page-wrap {
+            max-width: 780px;
+            margin: 0 auto;
+            background: #fefcf9;
+            padding: 2.5rem 2rem;
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04), 0 1px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        @media (max-width: 540px) {
+            body {
+                padding: 1rem 0.75rem;
+            }
+            .page-wrap {
+                padding: 1.8rem 1.2rem;
+                border-radius: 18px;
+            }
+        }
+
+        /* 文章标题 */
+        .article-header {
+            margin-bottom: 2rem;
+            border-left: 4px solid #d9c9b4;
+            padding-left: 1.2rem;
+        }
+        .article-header h1 {
+            font-size: 2rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            color: #3b352e;
+            margin-bottom: 0.5rem;
+        }
+        .article-header .subhead {
+            font-size: 1rem;
+            color: #7a7167;
+            font-weight: 400;
+        }
+
+        /* 导语 */
+        .lead {
+            font-size: 1.1rem;
+            background: #f3efe8;
+            padding: 1.2rem 1.6rem;
+            border-radius: 14px;
+            margin-bottom: 2.2rem;
+            color: #3d372f;
+            border: 1px solid #e6ddd2;
+            box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.6);
+        }
+
+        /* 正文段落 */
+        p {
+            margin-bottom: 1.4rem;
+            font-size: 1rem;
+            text-align: justify;
+            word-break: break-word;
+        }
+
+        /* 引用块 / 提示框 */
+        .insight-box {
+            background: #f4efe7;
+            padding: 1.5rem 1.8rem;
+            border-radius: 16px;
+            margin: 2rem 0;
+            border-left: 5px solid #b7a48e;
+            font-style: normal;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .insight-box strong {
+            display: block;
+            font-weight: 600;
+            color: #4d4239;
+            margin-bottom: 0.3rem;
+            font-size: 1.05rem;
+        }
+        .insight-box p {
+            margin-bottom: 0.2rem;
+        }
+
+        /* 小提示风格块 */
+        .tip-card {
+            background: white;
+            padding: 1.4rem 1.6rem;
+            border-radius: 18px;
+            border: 1px solid #e7dfd3;
+            margin: 2rem 0 1.8rem;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.02);
+        }
+        .tip-card .tip-label {
+            display: inline-block;
+            background: #dccfc0;
+            color: #302b25;
+            font-weight: 500;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            padding: 0.2rem 0.9rem;
+            border-radius: 30px;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        /* 分隔装饰 */
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: #d9cebf;
+            margin: 2.2rem 0 1.6rem;
+        }
+
+        /* 链接样式 */
+        a {
+            color: #876b4f;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            font-weight: 500;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        a:hover {
+            border-bottom-color: #876b4f;
+            color: #5c4733;
+        }
+
+        /* 访问句 / 文章结尾 */
+        .closing-note {
+            margin-top: 2.6rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e2d8cc;
+            font-size: 0.95rem;
+            color: #5f5549;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.3rem;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #e3dbcf;
+            margin: 2rem 0 1.2rem;
+            opacity: 0.5;
+        }
+
+        /* 小字号辅助 */
+        .footnote {
+            color: #9b8e7d;
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+    <div class="article-header">
+        <h1>从零开始，熟悉九游</h1>
+        <div class="subhead">一份生活化的简明指南 · 访问前你需要知道的几件事</div>
+    </div>
+
+    <div class="lead">
+        <p>有时候我们只是想找个地方，安安静静地浏览或找点感兴趣的内容。<strong>九游</strong> 算是一个比较轻量的选择。本文不绕弯子，只讲怎么用、怎么看，以及访问时的小提醒。</p>
+    </div>
+
+    <p>大概两年前我第一次打开 <a href="https://portal-ninegame.com">九游</a>，第一印象是页面干净，没有什么花哨的弹窗。后来慢慢发现，这里的版块划分挺清楚，无论是随手翻阅还是想找某个方向的内容，都不需要反复点击。对于日常习惯用浏览器获取信息的人来说，这种体验算是顺手的。</p>
+
+    <p>如果你只是偶尔想上来看看，直接输入域名就好，不需要注册或登录。有些朋友担心隐私或多余步骤，其实就我自己的使用感受来说，它更像一个开放的信息面板，主要入口就是 <a href="https://portal-ninegame.com">九游</a>，没有强制流程。你到了首页后，可以根据自己的节奏慢慢浏览。</p>
+
+    <div class="insight-box">
+        <strong>💡 一个小提醒</strong>
+        <p>初次访问时，建议花两分钟熟悉一下导航结构。很多实用内容其实藏在二级页面里，但首页本身的信息密度已经足够高。另外，部分板块的加载速度可能受本地网络影响，耐心一点就好。</p>
+    </div>
+
+    <p>关于内容类型，<a href="https://portal-ninegame.com">九游</a> 涵盖了多个资讯和分类，但每个分类都不算臃肿。作为读者，你不需要面对信息轰炸。我通常把它当作一个日常的阅读补充，偶尔能发现一些意想不到的视角。当然，每个人的兴趣点不同，你亲自逛一圈会有自己的判断。</p>
+
+    <div class="tip-card">
+        <span class="tip-label">实用贴士</span>
+        <p>如果你习惯用手机浏览器访问，体验和桌面端差别不大，排版会自动适配。但有一点：部分页面可能适配旧版系统，若遇到显示异常，可以尝试刷新或切换横竖屏。我个人一直用默认浏览器，没出过什么大问题。</p>
+    </div>
+
+    <p>另外，<a href="https://portal-ninegame.com">九游</a> 的更新频率不算特别快，但这也意味着你每次打开，不会有那种“错过一整天”的焦虑。它更像一个安静的角落，适合那些不想被算法推着走的人。我认识几个朋友，他们每周固定上来看看，已经成为一种小习惯。</p>
+
+    <p>最后想说的是，网络上值得花时间的地方其实不多，如果某个站点能让你觉得舒服，那就值得留下。不妨把 <a href="https://portal-ninegame.com">九游</a> 加入书签，下次想换个节奏时，直接点开就行。</p>
+
+    <hr>
+
+    <div class="closing-note">
+        <span>✏️ 访问提醒：</span>
+        <span>直接使用链接 <a href="https://portal-ninegame.com">九游</a> 即可，无需额外工具。保持浏览器为最新版本，可获得最佳显示效果。</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <p class="footnote" style="margin-top:0;">—— 本文仅代表个人使用视角，内容基于日常体验，不带任何推广意图。</p>
+</div>
+</body>
+</html>
