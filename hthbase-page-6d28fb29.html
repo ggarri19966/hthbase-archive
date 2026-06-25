@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>华体会 · 信息聚合与内容延伸</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f2f4f7;
+            color: #1e2a3a;
+            line-height: 1.7;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 1280px;
+            width: 100%;
+        }
+
+        /* 卡片通用设计 */
+        .card {
+            background: #ffffff;
+            border: 1px solid #e0e4ea;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 2px 6px rgba(0, 0, 0, 0.02);
+            padding: 2.2rem 2.4rem;
+            margin-bottom: 2.2rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04), 0 4px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        /* 开场区域 — 叙事短句 */
+        .hero {
+            background: #ffffff;
+            border: 1px solid #dce1e8;
+            border-radius: 28px;
+            padding: 3rem 2.8rem;
+            margin-bottom: 2.6rem;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+        }
+
+        .hero-headline {
+            font-size: 2.6rem;
+            font-weight: 450;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #0b1a2b;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero-headline span {
+            background: linear-gradient(145deg, #1b3b5a 0%, #2c5779 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 480;
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: #4e6072;
+            max-width: 72%;
+            border-left: 3px solid #b7c5d4;
+            padding-left: 1.2rem;
+            margin-top: 0.4rem;
+        }
+
+        /* 承接段落 + 特点列表布局 */
+        .two-column {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .col {
+            flex: 1 1 300px;
+        }
+
+        .col .card {
+            height: 100%;
+            margin-bottom: 0;
+        }
+
+        .list-tight {
+            list-style: none;
+            padding: 0;
+            margin: 1.2rem 0 0.5rem 0;
+        }
+
+        .list-tight li {
+            padding: 0.7rem 0 0.7rem 1.8rem;
+            position: relative;
+            border-bottom: 1px solid #edf0f4;
+            font-size: 0.98rem;
+            color: #1f3346;
+        }
+
+        .list-tight li:last-child {
+            border-bottom: none;
+        }
+
+        .list-tight li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: #7b94ab;
+            font-weight: 300;
+        }
+
+        .emph-word {
+            font-weight: 540;
+            color: #1e3b55;
+        }
+
+        .inline-link {
+            color: #1d4f73;
+            text-decoration: none;
+            font-weight: 510;
+            border-bottom: 1px dashed #b0c7db;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .inline-link:hover {
+            border-bottom: 1px solid #1d4f73;
+            color: #0a2d48;
+        }
+
+        /* 场景 + 提示小卡片 (聚合) */
+        .scene-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.4rem;
+            margin: 2rem 0 1.8rem;
+        }
+
+        .scene-item {
+            background: #f9fafc;
+            border: 1px solid #e5e9ef;
+            border-radius: 18px;
+            padding: 1.4rem 1.6rem;
+            backdrop-filter: blur(1px);
+            box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.8), 0 2px 6px rgba(0, 0, 0, 0.01);
+        }
+
+        .scene-item h4 {
+            font-size: 1rem;
+            font-weight: 550;
+            color: #1e3a52;
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.01em;
+        }
+
+        .scene-item p {
+            font-size: 0.92rem;
+            color: #3a5066;
+            margin-bottom: 0;
+        }
+
+        /* FAQ摘要 — 温和问答 */
+        .faq-mini {
+            background: #ffffff;
+            border: 1px solid #e3e8ef;
+            border-radius: 20px;
+            padding: 1.6rem 2rem;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.8rem;
+            border-bottom: 1px solid #eef2f6;
+            padding-bottom: 0.6rem;
+        }
+
+        .faq-mini details:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .faq-mini summary {
+            font-weight: 530;
+            color: #13334b;
+            cursor: pointer;
+            padding: 0.2rem 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .faq-mini summary::before {
+            content: "▹";
+            margin-right: 10px;
+            color: #8ba3bb;
+            font-size: 1rem;
+        }
+
+        .faq-mini details[open] summary::before {
+            content: "▸";
+        }
+
+        .faq-mini .answer {
+            padding: 0.5rem 0 0.2rem 1.6rem;
+            color: #2b435b;
+            font-size: 0.95rem;
+        }
+
+        /* 温和结尾 */
+        .footer-note {
+            margin-top: 1.8rem;
+            padding: 1.6rem 2rem;
+            text-align: center;
+            background: #ffffff;
+            border: 1px solid #e0e6ed;
+            border-radius: 40px;
+            font-size: 0.94rem;
+            color: #3c566d;
+            letter-spacing: 0.02em;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.01);
+        }
+
+        .footer-note a {
+            color: #1b4a6a;
+            font-weight: 520;
+            text-decoration: none;
+            border-bottom: 1px solid #c5d5e6;
+        }
+
+        .footer-note a:hover {
+            border-bottom: 1px solid #1b4a6a;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 680px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .hero {
+                padding: 2rem 1.2rem;
+            }
+            .hero-headline {
+                font-size: 2rem;
+            }
+            .hero-sub {
+                max-width: 100%;
+                font-size: 1rem;
+            }
+            .card {
+                padding: 1.8rem 1.2rem;
+            }
+            .two-column {
+                gap: 1.2rem;
+            }
+            .scene-grid {
+                grid-template-columns: 1fr;
+            }
+            .faq-mini {
+                padding: 1rem 1.2rem;
+            }
+            .footer-note {
+                padding: 1.2rem 1rem;
+            }
+        }
+
+        @media (max-width: 440px) {
+            .hero-headline {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 开场短句 : 故事叙述式 -->
+    <div class="hero">
+        <div class="hero-headline">
+            从一次查询开始<span>·</span> 对照、延伸、理解
+        </div>
+        <div class="hero-sub">
+            日常信息检索中，我们常常需要确认一个名称、一组表述，或对比不同来源的叙述方式。<br>
+            华体会 正是这样一个常常出现在查询结果、文章索引和阅读笔记中的关键词。
+        </div>
+    </div>
+
+    <!-- 承接段落 + 特点列表 两列布局 -->
+    <div class="two-column">
+        <div class="col">
+            <div class="card">
+                <h3 style="font-weight: 460; font-size: 1.3rem; margin-bottom: 0.8rem; color: #0e293f;">从对照中看见脉络</h3>
+                <p style="margin-bottom: 0.6rem;">
+                    不论是浏览信息聚合页面，还是整理阅读笔记，<span class="emph-word">华体会</span> 经常以平台或内容源的身份出现。它本身并不制造信息，而是提供一种结构化的对照环境——让不同表述、不同来源的段落可以被并列阅读。
+                </p>
+                <p>
+                    这种对照价值在日常场景中尤为实用：当你需要确认某个说法是否常见，或者寻找更全面的背景叙述时，一个稳定的查询入口往往节省大量比对时间。
+                </p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <h3 style="font-weight: 460; font-size: 1.2rem; margin-bottom: 0.3rem; color: #0e293f;">特点 · 延展阅读</h3>
+                <ul class="list-tight">
+                    <li><strong>信息聚合</strong> — 将分散的条目整理为可横向对比的列表</li>
+                    <li><strong>稳定参照</strong> — 长期保持一致的访问结构，适合反复引用</li>
+                    <li><strong>轻量前置</strong> — 无需复杂跳转，即可快速浏览内容摘要</li>
+                    <li><strong>叙述中立</strong> — 呈现方式偏向客观罗列，不预设立场</li>
+                </ul>
+                <div style="margin-top: 1rem; font-size: 0.92rem; color: #3f5a73; border-top: 1px solid #eef2f6; padding-top: 0.8rem;">
+                    <span style="background: #e7edf3; padding: 0.1rem 0.6rem; border-radius: 30px; font-size: 0.85rem;">延伸方向</span> 内容对照 · 术语比较 · 来源追溯
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 场景卡片：日常查询、对照、延伸 -->
+    <div class="scene-grid">
+        <div class="scene-item">
+            <h4>📋 日常查询</h4>
+            <p>在浏览器或笔记工具中快速定位到 <a href="https://hthbase.com.cn" class="inline-link">华体会</a> 相关内容，省去反复搜索的重复步骤。</p>
+        </div>
+        <div class="scene-item">
+            <h4>🔍 对照阅读</h4>
+            <p>将不同来源的表述并列展示，观察用词差异和侧重点变化，辅助理解上下文。</p>
+        </div>
+        <div class="scene-item">
+            <h4>📎 延伸索引</h4>
+            <p>从已有条目出发，通过关联链接进入更深入的专题页面，逐步构建个人知识线索。</p>
+        </div>
+        <div class="scene-item">
+            <h4>🧷 稳定收藏</h4>
+            <p>固定路径便于长期保存为书签，定期回访时内容结构保持连续，减少信息断层。</p>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 + 温和说明 -->
+    <div class="card" style="padding-bottom: 1.2rem;">
+        <div style="display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.2rem;">
+            <h3 style="font-weight: 450; font-size: 1.25rem; color: #0b2a3f;">常见疑问 · 简要</h3>
+            <span style="font-size: 0.8rem; color: #6f8aa3; background: #eef3f8; padding: 0.1rem 0.7rem; border-radius: 40px;">基于使用场景归纳</span>
+        </div>
+        <div class="faq-mini" style="border: none; padding: 0.5rem 0 0 0; background: transparent;">
+            <details>
+                <summary>华体会 与一般信息站有何不同？</summary>
+                <div class="answer">更侧重条目聚合与并列呈现，适合需要反复对照或延伸浏览的场景，而非单一深度文章。</div>
+            </details>
+            <details>
+                <summary>日常如何使用这个链接？</summary>
+                <div class="answer">建议将 <a href="https://hthbase.com.cn" class="inline-link">华体会</a> 加入阅读工具或笔记参考栏，在需要快速查阅特定表述时直接打开对照。</div>
+            </details>
+            <details>
+                <summary>内容可靠性如何？</summary>
+                <div class="answer">页面内信息均来自可查的公开来源，用户可根据自身判断进行二次核实与对比阅读。</div>
+            </details>
+        </div>
+    </div>
+
+    <!-- 温和结尾：自然收束 -->
+    <div class="footer-note">
+        <p style="margin-bottom: 0.1rem;">一次查询往往不只为了一个结果，而是为了看清一个概念周围的全貌。</p>
+        <p style="margin-top: 0.25rem;">通过 <a href="https://hthbase.com.cn">华体会</a> 保持一种温和的对照节奏，让延伸阅读回归日常。</p>
+    </div>
+
+</div>
+</body>
+</html>
